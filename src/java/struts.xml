@@ -1,0 +1,129 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        
+        <interceptors>	
+            <interceptor name="roleInterceptor" 
+                     class="interceptors.RoleInterceptor">
+            </interceptor>
+        	
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="roleInterceptor">
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+			
+        </interceptors>
+        
+        <action name="MenuDisplay" class="actions.MenuAction">
+            <interceptor-ref name="myStack"/>
+            
+            <result name="success">/display.jsp</result>
+            <result name="error">/error.jsp</result>
+            <result name="admin">/adminPage.jsp</result>
+            <result name="unauth">/unauthorized.jsp</result>
+
+        </action>
+        
+        <action name="Login" class="actions.LoginAction">
+
+             <result name="success" type="chain">MenuDisplay</result>
+            <result name="login">/loginPage.jsp</result>
+            <result name="input">/loginPage.jsp</result>
+            <result name="unauth">/unauthorized.jsp</result>
+            <result name="error">/error.jsp</result>
+
+        </action>
+        
+        <action name="Order" class="actions.OrderAction">
+            <interceptor-ref name="myStack"/>
+
+             <result name="success" type="chain">MenuDisplay</result>
+            <result name="already" type="chain">MenuDisplay</result>
+            <result name="must" type="chain">MenuDisplay</result>
+
+            <result name="unauth">/loginPage.jsp</result>
+            <result name="error">/error.jsp</result>
+
+        </action>
+        
+          <action name="UserPage" class="actions.DisplayAction">
+            <interceptor-ref name="myStack"></interceptor-ref>  
+
+             <result name="success">/orderPage.jsp</result>
+            <result name="unauth">/loginPage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="ShowSelectedAction" class="actions.AdminFoodAction">
+            <interceptor-ref name="myStack">
+                    <param name="roleInterceptor.accessPrivilege">admin</param>
+            </interceptor-ref>
+            
+             <result name="edit">/selectedItemPage.jsp</result>
+            <result name="remove" type="chain">MenuDisplay</result>
+             <result name="add">/selectedItemPage.jsp</result>
+             <result name="success" type="chain">MenuDisplay</result>
+             <result name="unauth">/unauthorized.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+         <action name="AddFoodFromDB" class="actions.AdminFoodAction">
+            <interceptor-ref name="myStack">
+                    <param name="roleInterceptor.accessPrivilege">admin</param>
+            </interceptor-ref>
+
+             <result name="updateSuccess" type="chain">MenuDisplay</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="UpdateSelected" class="actions.AdminFoodAction">
+             <interceptor-ref name="myStack">
+                   <param name="roleInterceptor.accessPrivilege">admin</param>
+            </interceptor-ref>
+
+
+             <result name="updateSuccess" type="chain">MenuDisplay</result>
+             <result name="unauth">/unauthorized.jsp</result>
+            <result name="error">/error.jsp</result>
+            <result name="input">/adminPage.jsp</result>
+        </action>
+        
+         <action name="RemoveUserAction" class="actions.AdminFoodAction">
+           <interceptor-ref name="myStack">
+                    <param name="roleInterceptor.accessPrivilege">admin</param>
+            </interceptor-ref>
+
+
+             <result name="updateSuccess" type="chain">MenuDisplay</result>
+             <result name="unauth">/unauthorized.jsp</result>
+            <result name="error">/error.jsp</result>
+            <result name="input">/adminPage.jsp</result>
+        </action>
+        
+        <action name="SearchOrder" class="actions.DisplayAction">
+            <interceptor-ref name="myStack"/>
+              <result name="success">/orderPage.jsp</result>
+            <result name="unauth">/unauthorized.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="NewUser" class="actions.NewUserAction">
+             <result name="success">/loginPage.jsp</result>
+            <result name="input">/loginPage.jsp</result>
+            <result name="unauth">/unauthorized.jsp</result>
+             <result name="dupp">/loginPage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+         <action name="LogOut" class="actions.LogoutAction">
+             <result name="success">/loginPage.jsp</result>
+        </action>
+        
+    </package>
+    
+</struts>
