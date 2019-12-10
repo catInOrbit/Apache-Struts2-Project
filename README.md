@@ -5,8 +5,8 @@ Images:
 **Login Page**
 [Login Page] (https://imgur.com/bwOaiyi)
 
-**Main Pages
+**Main Pages**
 [Main Page 1] (https://imgur.com/jqauRkV)
 
-**Cart Pages
+**Cart Pages**
 [Cart Page 1] (https://imgur.com/8Xygmo3)
