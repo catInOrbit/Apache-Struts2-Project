@@ -4,10 +4,10 @@ Images:
 
 **Login Page**<br/>
 
-![Login Page] (https://imgur.com/bwOaiyi)
+![Login Page] (https://i.imgur.com/bwOaiyi.png?1)
 
 **Main Pages**<br/>
-![Main Page 1] (https://imgur.com/jqauRkV)
+![Main Page 1] (https://i.imgur.com/jqauRkV.png)
 
 **Cart Pages**<br/>
-![Cart Page 1] (https://imgur.com/8Xygmo3)
+![Cart Page 1] (https://i.imgur.com/8Xygmo3.png)
